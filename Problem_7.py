@@ -3,11 +3,13 @@
 
 # What is the 10 001st prime number?
 
+
 def isPrime(number):
-    for i in range(2, number-1):
+    for i in range(2, number - 1):
         if number % i == 0:
             return False
     return True
+
 
 prime = []
 i = 2
