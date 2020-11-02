@@ -10,7 +10,7 @@ d = {}
 
 
 def fibonacci(i):
-    if d.get(i, None) != None:
+    if d.get(i, None) is not None:
         return d.get(i, None)
     if i <= 2:
         d[i] = 1
