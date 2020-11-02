@@ -19,8 +19,9 @@ def fibonacci(i):
         d[i] = fibonacci(i - 1) + fibonacci(i - 2)
         return d[i]
 
-n=0
-while fibonacci(n) < 4000000:
-    n+=1
 
-print(sum([d[i] if d[i] % 2 == 0 else 0 for i in range(0,n)]))
+n = 0
+while fibonacci(n) < 4000000:
+    n += 1
+
+print(sum([d[i] if d[i] % 2 == 0 else 0 for i in range(0, n)]))
