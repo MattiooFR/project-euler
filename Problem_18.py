@@ -29,7 +29,7 @@
 # trying every route. However, Problem 67, is the same challenge with a triangle
 # containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
-## WRONG ##
+# WRONG #
 
 # def find_max_adjacent(combo):
 #     arr, index = combo
@@ -64,4 +64,36 @@
 #         return result
 
 
-print(get_max_adjacent_sum("Problem_18.txt"))
+def read_triangle_array(path):
+    with open(path) as data_file:
+        col_number = len(data_file.readlines()[-1].split(" "))
+    with open(path) as data_file:
+        triangle_array = []
+        for i, line in enumerate(data_file):
+            triangle_array.append(
+                [int(value) for value in line.strip().split(" ")]
+                + [0 for i in range(col_number - i - 1)]
+            )
+    return triangle_array
+
+
+def make_sum(path):
+    triangle_array = read_triangle_array(path)
+    reversed_array = triangle_array[::-1]
+    while len(reversed_array) > 1:
+        for j in range(0, len(reversed_array[0]) - 1):
+            if (
+                reversed_array[0][j] + reversed_array[1][j]
+                > reversed_array[0][j + 1] + reversed_array[1][j]
+            ):
+                reversed_array[1][j] = reversed_array[0][j] + reversed_array[1][j]
+            else:
+                reversed_array[1][j] = reversed_array[0][j + 1] + reversed_array[1][j]
+        else:
+            if len(reversed_array) > 1:
+                del reversed_array[0]
+    return max(reversed_array[0])
+
+
+print(make_sum("p067_triangle.txt"))
+# Answer 1074
